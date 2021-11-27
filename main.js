@@ -1,4 +1,4 @@
-canvas = document.getElementById("myCanvas");
+canvas = document.getElementById('myCanvas');
 ctx = canvas.getContext("2d");
 
 
@@ -11,7 +11,7 @@ var current_Y_position = "";
 color = "black";
 width = 3;
 
-canvas.addEventListner("mousedown", my_mousedown);
+canvas.addEventListener("mousedown", my_mousedown);
 
 function my_mousedown(e){
 
@@ -19,13 +19,13 @@ function my_mousedown(e){
 
     width = document.getElementById("width").value;
 
-    mouseEvent = mouseDown;
+    mouseEvent = "mouseDown";
 }
-
+canvas.addEventListener("mousemove", my_mousemove);
 function my_mousemove(e){
 
-    current_position_of_mouse_X = e.clientX - canvasoffsetLeft;
-    current_position_of_mouse_Y = e.clientY - canvasoffsetTop;
+    current_position_of_mouse_X = e.clientX - canvas.offsetLeft;
+    current_position_of_mouse_Y = e.clientY - canvas.offsetTop;
 
     if(mouseEvent == "mouseDown"){
 
@@ -35,8 +35,15 @@ function my_mousemove(e){
         ctx.beginPath();
         ctx.strokeStyle = color;
         ctx.lineWidth = width;
-        ctx.arc(current_position_of_mouse_X, current_position_of_mouse_X, 0, 2 * Math.PI);
-        ctx.stroke;
+        ctx.arc(current_position_of_mouse_X, current_position_of_mouse_Y, 10, 0, 2 * Math.PI);
+        ctx.stroke();
     }
+
+}
+
+function clicky(){
+
+    ctx.clearRect(0,0,ctx.canvas.width, ctx.canvas.height);
+
 
 }
